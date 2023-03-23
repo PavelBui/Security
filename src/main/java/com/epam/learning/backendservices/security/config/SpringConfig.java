@@ -1,7 +1,5 @@
 package com.epam.learning.backendservices.security.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.hateoas.client.LinkDiscoverer;
@@ -32,12 +30,22 @@ public class SpringConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/about/**").permitAll()
+                .antMatchers("/", "/about/**", "/index/**").permitAll()
                 .antMatchers("/person/**").hasRole("VIEW_PERSON")
                 .antMatchers("/subscription/**").hasRole("VIEW_SUBSCRIPTION")
                 .antMatchers("/info/**").hasRole("VIEW_INFO")
                 .antMatchers("/admin/**").hasRole("VIEW_ADMIN")
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/logout")
+                .deleteCookies("JSESSIONID")
+                .permitAll();
         http.httpBasic();
         return http.build();
     }

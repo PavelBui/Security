@@ -15,15 +15,17 @@ CREATE TABLE subscriptions
 
 CREATE TABLE users
 (
-    username varchar(50) not null primary key,
-    password varchar(500) not null,
-    enabled  boolean not null
+    username       varchar(50) not null primary key,
+    password   varchar(500) not null,
+    email      varchar(128) not null,
+    failed_login    int not null,
+    enabled         boolean not null
 );
 
 CREATE TABLE authorities
 (
-    username  varchar(50) not null,
-    authority varchar(50) not null,
+    username   varchar(50) not null,
+    authority   varchar(50) not null,
     constraint fk_authorities_users foreign key (username) references users (username)
 );
 

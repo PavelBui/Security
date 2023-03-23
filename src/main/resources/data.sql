@@ -12,12 +12,12 @@ INSERT INTO subscriptions (subscription_id, person_id, subscription_start_date) 
 INSERT INTO subscriptions (subscription_id, person_id, subscription_start_date) values (5, (SELECT person_id FROM persons where person_name = 'Antony'), '2023-03-05');
 INSERT INTO subscriptions (subscription_id, person_id, subscription_start_date) values (6, (SELECT person_id FROM persons where person_name = 'Elisha'), '2023-03-06');
 
-INSERT INTO users (username, password, enabled)
-values ('user', '{bcrypt}$2a$10$XlkdPQQhYcolx8bgp6nL3uNvDs8ZwDXA4KFaDencZsIhjMQO3j5lq', true);
-INSERT INTO users (username, password, enabled)
-values ('worker', '{bcrypt}$2a$10$XlkdPQQhYcolx8bgp6nL3uNvDs8ZwDXA4KFaDencZsIhjMQO3j5lq', true);
-INSERT INTO users (username, password, enabled)
-values ('admin', '{bcrypt}$2a$10$XlkdPQQhYcolx8bgp6nL3uNvDs8ZwDXA4KFaDencZsIhjMQO3j5lq', true);
+INSERT INTO users (username, password, email, failed_login, enabled)
+values ('user', '{bcrypt}$2a$10$XlkdPQQhYcolx8bgp6nL3uNvDs8ZwDXA4KFaDencZsIhjMQO3j5lq', 'user@email.com', 0, true);
+INSERT INTO users (username, password, email, failed_login, enabled)
+values ('worker', '{bcrypt}$2a$10$XlkdPQQhYcolx8bgp6nL3uNvDs8ZwDXA4KFaDencZsIhjMQO3j5lq', 'worker@email.com', 0, true);
+INSERT INTO users (username, password, email, failed_login, enabled)
+values ('admin', '{bcrypt}$2a$10$XlkdPQQhYcolx8bgp6nL3uNvDs8ZwDXA4KFaDencZsIhjMQO3j5lq', 'admin@email.com', 0, true);
 
 INSERT INTO authorities (username, authority)
 values ('user', 'ROLE_VIEW_PERSON');
