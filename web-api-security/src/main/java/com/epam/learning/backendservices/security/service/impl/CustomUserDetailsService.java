@@ -5,6 +5,7 @@ import com.epam.learning.backendservices.security.model.User;
 import com.epam.learning.backendservices.security.repository.UserAuthorityRepository;
 import com.epam.learning.backendservices.security.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,12 +20,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;
     private UserAuthorityRepository userAuthorityRepository;
+    private LoginAttemptService loginAttemptService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findById(username).get();
         if (user == null) {
             throw new UsernameNotFoundException("User not found!");
+        } else {
+            if (loginAttemptService.isBlocked(username)) {
+                throw new LockedException("User is blocked");
+            }
         }
         String userName = user.getUsername();
         List<String> rolesList = userAuthorityRepository.findAllByUsername(userName).stream()
