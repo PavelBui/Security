@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "authorities")
-public class Authority {
+public class UserAuthority {
 
     @Id
     @Column(name="authorityId")

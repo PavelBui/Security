@@ -1,8 +1,8 @@
 package com.epam.learning.backendservices.security.service.impl;
 
-import com.epam.learning.backendservices.security.model.Authority;
+import com.epam.learning.backendservices.security.model.UserAuthority;
 import com.epam.learning.backendservices.security.model.User;
-import com.epam.learning.backendservices.security.repository.AuthoritiesRepository;
+import com.epam.learning.backendservices.security.repository.UserAuthorityRepository;
 import com.epam.learning.backendservices.security.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;
-    private AuthoritiesRepository authoritiesRepository;
+    private UserAuthorityRepository userAuthorityRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -27,8 +27,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found!");
         }
         String userName = user.getUsername();
-        List<String> rolesList = authoritiesRepository.findByUsername(userName).stream()
-                .map(Authority::getAuthority)
+        List<String> rolesList = userAuthorityRepository.findAllByUsername(userName).stream()
+                .map(UserAuthority::getAuthority)
                 .collect(Collectors.toList());
         String[] roles = rolesList.toArray(new String[]{});
         return org.springframework.security.core.userdetails.User.withUsername(userName)

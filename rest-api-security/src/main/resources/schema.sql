@@ -23,7 +23,7 @@ CREATE TABLE users
 
 CREATE TABLE authorities
 (
-    authority_id  bigint primary key,
+    authority_id    bigint primary key,
     username        varchar(50) not null,
     authority       varchar(50) not null,
     constraint fk_authorities_users foreign key (username) references users (username)
