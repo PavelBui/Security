@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscriptions</title>
+</head>
+<body>
+
+<p>Subscriptions:</p>
+<div th:each="subscription : ${subscriptions}">
+  <p th:text="${subscription.getPersonId()} + ', ' + ${subscription.getStartDate()}"/>
+</div>
+<br>
+<a href="http://localhost:8080/index">Home</a>
+
+</body>
+</html>

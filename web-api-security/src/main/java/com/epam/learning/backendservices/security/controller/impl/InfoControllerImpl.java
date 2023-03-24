@@ -1,0 +1,14 @@
+package com.epam.learning.backendservices.security.controller.impl;
+
+import com.epam.learning.backendservices.security.controller.InfoController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+@Controller
+public class InfoControllerImpl implements InfoController {
+
+    public String infoPage(Model model) {
+        model.addAttribute("title", "Info Page");
+        return "info";
+    }
+}

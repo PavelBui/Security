@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Persons</title>
+</head>
+<body>
+
+<p>Persons:</p>
+<div th:each="person : ${persons}">
+  <p th:text="${person.getName()} + ', ' + ${person.getSurname()} + ', ' + ${person.getBirthday()}"/>
+</div>
+<br>
+<a href="http://localhost:8080/index">Home</a>
+
+</body>
+</html>
