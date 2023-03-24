@@ -50,4 +50,8 @@ public class LoginAttemptService {
         }
     }
 
+    public CachedValue getCachedValue(final String key) {
+        return attemptsCache.getUnchecked(key);
+    }
+
 }

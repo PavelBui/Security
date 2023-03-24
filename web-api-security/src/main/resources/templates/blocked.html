@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Blocked users</title>
+</head>
+<body>
+<h3>Blocked users</h3>
+<table>
+    <thead>
+    <tr>
+        <th>User</th>
+        <th>Blocked since</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="instance : ${blockedUsers}">
+        <td th:text="${instance.key}"></td>
+        <td th:text="${instance.value}"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<li><a href="http://localhost:8080/index">Home</a></li>
+</body>
+</html>

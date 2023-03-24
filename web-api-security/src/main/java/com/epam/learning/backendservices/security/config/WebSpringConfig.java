@@ -35,11 +35,11 @@ public class WebSpringConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomAuthenticationFailureHandler authenticationFailureHandler) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/about", "/index", "/login", "/logout").permitAll()
+                .antMatchers(HttpMethod.GET, "/about", "/index", "/login*", "/logout").permitAll()
                 .antMatchers(HttpMethod.GET, "/person").hasRole("VIEW_PERSON")
                 .antMatchers(HttpMethod.GET, "/subscription").hasRole("VIEW_SUBSCRIPTION")
                 .antMatchers(HttpMethod.GET,"/info").hasRole("VIEW_INFO")
-                .antMatchers(HttpMethod.GET,"/admin").hasRole("VIEW_ADMIN")
+                .antMatchers(HttpMethod.GET,"/admin", "/blocked").hasRole("VIEW_ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

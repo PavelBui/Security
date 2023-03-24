@@ -6,13 +6,13 @@
 </head>
 <body>
 
-<p>Persons:</p>
+<h3>Persons:</h3>
 <div th:each="person : ${persons}">
-  <p th:text="${person.getName()} + ', ' + ${person.getSurname()} + ', ' + ${person.getBirthday()}"/>
+    <p th:text="${person.getName()} + ', ' + ${person.getSurname()} + ', ' + ${person.getBirthday()}"/>
 </div>
-<br>
+<br><br>
 <a href="http://localhost:8080/index">Home</a>
-<br>
+<br><br>
 <a href="http://localhost:8080/logout">Logout</a>
 
 </body>

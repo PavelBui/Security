@@ -6,13 +6,13 @@
 </head>
 <body>
 
-<p>Subscriptions:</p>
+<h3>Subscriptions:</h3>
 <div th:each="subscription : ${subscriptions}">
-  <p th:text="${subscription.getPersonId()} + ', ' + ${subscription.getStartDate()}"/>
+    <p th:text="${subscription.getPersonId()} + ', ' + ${subscription.getStartDate()}"/>
 </div>
-<br>
+<br><br>
 <a href="http://localhost:8080/index">Home</a>
-<br>
+<br><br>
 <a href="http://localhost:8080/logout">Logout</a>
 
 </body>
