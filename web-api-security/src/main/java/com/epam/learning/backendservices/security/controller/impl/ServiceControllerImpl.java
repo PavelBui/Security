@@ -4,7 +4,7 @@ import com.epam.learning.backendservices.security.controller.ServiceController;
 import com.epam.learning.backendservices.security.dto.SubscriptionDto;
 import com.epam.learning.backendservices.security.model.Subscription;
 import com.epam.learning.backendservices.security.service.SubscriptionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +13,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@AllArgsConstructor
 public class ServiceControllerImpl implements ServiceController {
 
-    @Autowired
     private SubscriptionService subscriptionService;
-    @Autowired
     private Converter<Subscription, SubscriptionDto> subscriptionToSubscriptionDtoConvertor;
 
     public String getAllSubscription(Model model) {

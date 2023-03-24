@@ -6,7 +6,7 @@ import com.epam.learning.backendservices.security.dto.SubscriptionResponseDto;
 import com.epam.learning.backendservices.security.exeption.SubscriptionNotFoundException;
 import com.epam.learning.backendservices.security.model.Subscription;
 import com.epam.learning.backendservices.security.service.SubscriptionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +21,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@AllArgsConstructor
 public class ServiceControllerImpl implements ServiceController {
 
-    @Autowired
     private SubscriptionService subscriptionService;
-    @Autowired
     private Converter<Subscription, SubscriptionResponseDto> subscriptionToSubscriptionResponseDtoConvertor;
-    @Autowired
     private Converter<SubscriptionRequestDto, Subscription> subscriptionRequestDtoToSubscriptionConvertor;
 
     public EntityModel<SubscriptionResponseDto> createSubscription(@RequestBody SubscriptionRequestDto subscriptionRequestDto) {

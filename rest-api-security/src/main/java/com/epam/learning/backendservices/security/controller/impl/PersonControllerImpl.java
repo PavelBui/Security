@@ -6,7 +6,7 @@ import com.epam.learning.backendservices.security.dto.PersonResponseDto;
 import com.epam.learning.backendservices.security.exeption.PersonNotFoundException;
 import com.epam.learning.backendservices.security.model.Person;
 import com.epam.learning.backendservices.security.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +21,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@AllArgsConstructor
 public class PersonControllerImpl implements PersonController {
 
-    @Autowired
     private PersonService personService;
-    @Autowired
     private Converter<Person, PersonResponseDto> personToPersonResponseDtoConverter;
-    @Autowired
     private Converter<PersonRequestDto, Person> personRequestDtoToPersonConverter;
 
     public EntityModel<PersonResponseDto> createPerson(@RequestBody PersonRequestDto personRequestDto) {

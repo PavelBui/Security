@@ -4,7 +4,7 @@ import com.epam.learning.backendservices.security.exeption.SubscriptionNotFoundE
 import com.epam.learning.backendservices.security.model.Subscription;
 import com.epam.learning.backendservices.security.repository.SubscriptionRepository;
 import com.epam.learning.backendservices.security.service.SubscriptionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,12 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class SubscriptionServiceImpl implements SubscriptionService {
 
-    @Autowired
     private SubscriptionRepository subscriptionRepository;
 
-    @Override
     public Subscription createSubscription(Subscription subscription) {
         Long id = subscription.getId();
         return subscriptionRepository.findById(id)
