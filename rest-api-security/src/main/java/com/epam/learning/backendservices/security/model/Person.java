@@ -14,17 +14,20 @@ import java.time.LocalDate;
 @Table(name = "persons")
 public class Person {
     @Id
-    @Column(name="personId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="personName")
     private String name;
 
-    @Column(name="personSurname")
     private String surname;
 
-    @Column(name="personBirthday")
     private LocalDate birthday;
+
+    public Person(Long id) {
+        this.id = id;
+        this.name = "";
+        this.surname = "";
+        this.birthday = LocalDate.now();
+    }
 
 }

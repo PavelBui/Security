@@ -1,0 +1,51 @@
+version: '2'
+services:
+  myapprest:
+    build: rest-api-security/
+    container_name: rest-api-security
+    ports:
+      - 8008:8008
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/security_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgre
+      - SERVER_PORT:8008
+    links:
+      - postgres
+    networks:
+      - mynetwork
+
+  myappweb:
+    build: web-api-security/
+    container_name: web-api-security
+    ports:
+      - 8080:8080
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/security_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgre
+    links:
+      - postgres
+    networks:
+      - mynetwork
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgre
+      - POSTGRES_DB=security_db
+    networks:
+      - mynetwork
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+networks:
+  mynetwork:
+    driver: bridge

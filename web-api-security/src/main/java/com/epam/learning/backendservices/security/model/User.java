@@ -14,16 +14,12 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @Column(name="username")
     private String username;
 
-    @Column(name="password")
     private String password;
 
-    @Column(name="failedLogin")
     private int failedLogin;
 
-    @Column(name="enabled")
     private boolean enabled;
 
 }

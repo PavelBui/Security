@@ -14,13 +14,10 @@ import javax.persistence.*;
 public class UserAuthority {
 
     @Id
-    @Column(name="authorityId")
-    private Long authorityId;
+    private Long id;
 
-    @Column(name="username")
     private String username;
 
-    @Column(name="authority")
     private String authority;
 
 }

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -24,14 +25,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findById(username).get();
-        if (user == null) {
+        Optional<User> optionalUser = userRepository.findById(username);
+        if (optionalUser.isEmpty()) {
             throw new UsernameNotFoundException("User not found!");
         } else {
             if (loginAttemptService.isBlocked(username)) {
                 throw new LockedException("User is blocked");
             }
         }
+        User user = optionalUser.get();
         String userName = user.getUsername();
         List<String> rolesList = userAuthorityRepository.findAllByUsername(userName).stream()
                 .map(UserAuthority::getAuthority)

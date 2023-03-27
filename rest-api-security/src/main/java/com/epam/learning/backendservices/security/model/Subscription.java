@@ -15,7 +15,6 @@ import java.time.LocalDate;
 public class Subscription {
 
     @Id
-    @Column(name="subscriptionId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -23,7 +22,6 @@ public class Subscription {
     @JoinColumn(name = "personId", nullable = false)
     private Person person;
 
-    @Column(name="subscriptionStartDate")
     private LocalDate startDate;
 
 }

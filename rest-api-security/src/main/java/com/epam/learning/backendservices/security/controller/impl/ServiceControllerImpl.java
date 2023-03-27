@@ -3,8 +3,10 @@ package com.epam.learning.backendservices.security.controller.impl;
 import com.epam.learning.backendservices.security.controller.ServiceController;
 import com.epam.learning.backendservices.security.dto.SubscriptionRequestDto;
 import com.epam.learning.backendservices.security.dto.SubscriptionResponseDto;
+import com.epam.learning.backendservices.security.exeption.PersonNotFoundException;
 import com.epam.learning.backendservices.security.exeption.SubscriptionNotFoundException;
 import com.epam.learning.backendservices.security.model.Subscription;
+import com.epam.learning.backendservices.security.service.PersonService;
 import com.epam.learning.backendservices.security.service.SubscriptionService;
 import lombok.AllArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
@@ -25,19 +27,24 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class ServiceControllerImpl implements ServiceController {
 
     private SubscriptionService subscriptionService;
+    private PersonService personService;
     private Converter<Subscription, SubscriptionResponseDto> subscriptionToSubscriptionResponseDtoConvertor;
     private Converter<SubscriptionRequestDto, Subscription> subscriptionRequestDtoToSubscriptionConvertor;
 
     public EntityModel<SubscriptionResponseDto> createSubscription(@RequestBody SubscriptionRequestDto subscriptionRequestDto) {
-        Subscription subscription = subscriptionService.createSubscription(
-                subscriptionRequestDtoToSubscriptionConvertor.convert(subscriptionRequestDto));
-        return toModel(subscriptionToSubscriptionResponseDtoConvertor.convert(subscription));
+        Subscription subscription = subscriptionRequestDtoToSubscriptionConvertor.convert(subscriptionRequestDto);
+        Long personId = subscription.getPerson().getId();
+        subscription.setPerson(personService.getPerson(personId)
+                .orElseThrow(() -> new PersonNotFoundException(personId)));
+        return toModel(subscriptionToSubscriptionResponseDtoConvertor.convert(subscriptionService.createSubscription(subscription)));
     }
 
     public EntityModel<SubscriptionResponseDto> updateSubscription(@RequestBody SubscriptionRequestDto subscriptionRequestDto) {
-        Subscription subscription = subscriptionService.updateSubscription(
-                subscriptionRequestDtoToSubscriptionConvertor.convert(subscriptionRequestDto));
-        return toModel(subscriptionToSubscriptionResponseDtoConvertor.convert(subscription));
+        Subscription subscription = subscriptionRequestDtoToSubscriptionConvertor.convert(subscriptionRequestDto);
+        Long personId = subscription.getPerson().getId();
+        subscription.setPerson(personService.getPerson(personId)
+                .orElseThrow(() -> new PersonNotFoundException(personId)));
+        return toModel(subscriptionToSubscriptionResponseDtoConvertor.convert(subscriptionService.updateSubscription(subscription)));
     }
 
     public ResponseEntity<String> deleteSubscription(@PathVariable Long id) {

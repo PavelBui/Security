@@ -15,14 +15,13 @@ import java.time.LocalDate;
 public class Subscription {
 
     @Id
-    @Column(name="subscriptionId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "personId", nullable = false)
     private Person person;
 
-    @Column(name="subscriptionStartDate")
     private LocalDate startDate;
 
 }

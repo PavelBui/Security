@@ -1,16 +1,16 @@
 CREATE TABLE persons(
-                          person_id          bigint primary key,
-                          person_name        varchar(128)  not null,
-                          person_surname     varchar(128) not null,
-                          person_birthday    date not null
+                          id          bigint primary key,
+                          name        varchar(128)  not null,
+                          surname     varchar(128) not null,
+                          birthday    date not null
 );
 
 CREATE TABLE subscriptions
 (
-    subscription_id    bigint primary key,
-    person_id  bigint not null,
-    foreign key (person_id) references persons (person_id),
-    subscription_start_date  date not null
+    id          bigint primary key,
+    person_id   bigint not null,
+    foreign key (person_id) references persons (id),
+    start_date  date not null
 );
 
 CREATE TABLE users
@@ -23,9 +23,9 @@ CREATE TABLE users
 
 CREATE TABLE authorities
 (
-    authority_id    bigint primary key,
-    username        varchar(50) not null,
-    authority       varchar(50) not null,
+    id          bigint primary key,
+    username    varchar(50) not null,
+    authority   varchar(50) not null,
     constraint fk_authorities_users foreign key (username) references users (username)
 );
 

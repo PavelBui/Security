@@ -2,6 +2,7 @@ package com.epam.learning.backendservices.security.converter;
 
 import com.epam.learning.backendservices.security.dto.SubscriptionRequestDto;
 import com.epam.learning.backendservices.security.exeption.PersonNotFoundException;
+import com.epam.learning.backendservices.security.model.Person;
 import com.epam.learning.backendservices.security.model.Subscription;
 import com.epam.learning.backendservices.security.service.PersonService;
 import org.springframework.beans.BeanUtils;
@@ -19,8 +20,7 @@ public class SubscriptionRequestDtoToSubscriptionConverter implements Converter<
     public Subscription convert(SubscriptionRequestDto subscriptionRequestDto) {
         Subscription subscription = new Subscription();
         BeanUtils.copyProperties(subscriptionRequestDto, subscription);
-        subscription.setPerson(personService.getPerson(subscriptionRequestDto.getPersonId())
-                .orElseThrow(() -> new PersonNotFoundException(subscriptionRequestDto.getPersonId())));
+        subscription.setPerson(new Person(subscriptionRequestDto.getPersonId()));
         return subscription;
     }
 
