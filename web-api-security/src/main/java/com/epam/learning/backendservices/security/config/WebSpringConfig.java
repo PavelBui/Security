@@ -40,6 +40,7 @@ public class WebSpringConfig {
                 .antMatchers(HttpMethod.GET, "/subscription").hasRole("VIEW_SUBSCRIPTION")
                 .antMatchers(HttpMethod.GET,"/info").hasRole("VIEW_INFO")
                 .antMatchers(HttpMethod.GET,"/admin", "/blocked").hasRole("VIEW_ADMIN")
+                .antMatchers(HttpMethod.GET,"/secret/**", "secretinfo").hasRole("VIEW_SECRET")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

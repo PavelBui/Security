@@ -22,17 +22,23 @@ values ('admin@email.com', '{bcrypt}$2a$10$XlkdPQQhYcolx8bgp6nL3uNvDs8ZwDXA4KFaD
 INSERT INTO authorities (id, username, authority)
 values (1, 'user@email.com', 'ROLE_VIEW_PERSON');
 INSERT INTO authorities (id, username, authority)
-values (2, 'worker@email.com', 'ROLE_VIEW_PERSON');
+values (2, 'user@email.com', 'ROLE_VIEW_SECRET');
 INSERT INTO authorities (id, username, authority)
-values (3, 'worker@email.com', 'ROLE_VIEW_SUBSCRIPTION');
+values (3, 'worker@email.com', 'ROLE_VIEW_PERSON');
 INSERT INTO authorities (id, username, authority)
-values (4, 'worker@email.com', 'ROLE_VIEW_INFO');
+values (4, 'worker@email.com', 'ROLE_VIEW_SUBSCRIPTION');
 INSERT INTO authorities (id, username, authority)
-values (5, 'admin@email.com', 'ROLE_VIEW_PERSON');
+values (5, 'worker@email.com', 'ROLE_VIEW_INFO');
 INSERT INTO authorities (id, username, authority)
-values (6, 'admin@email.com', 'ROLE_VIEW_SUBSCRIPTION');
+values (6, 'worker@email.com', 'ROLE_VIEW_SECRET');
 INSERT INTO authorities (id, username, authority)
-values (7, 'admin@email.com', 'ROLE_VIEW_INFO');
+values (7, 'admin@email.com', 'ROLE_VIEW_PERSON');
 INSERT INTO authorities (id, username, authority)
-values (8, 'admin@email.com', 'ROLE_VIEW_ADMIN');
+values (8, 'admin@email.com', 'ROLE_VIEW_SUBSCRIPTION');
+INSERT INTO authorities (id, username, authority)
+values (9, 'admin@email.com', 'ROLE_VIEW_INFO');
+INSERT INTO authorities (id, username, authority)
+values (10, 'admin@email.com', 'ROLE_VIEW_ADMIN');
+INSERT INTO authorities (id, username, authority)
+values (11, 'admin@email.com', 'ROLE_VIEW_SECRET');
 
