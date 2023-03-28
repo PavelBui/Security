@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title th:text="${title}"></title>
+</head>
+
+<body>
+
+<h3>Information about API</h3>
+
+<ul style="list-style: none;">
+    <li><a th:href="@{/index}">Home</a></li>
+    <br>
+    <li><a th:href="@{/info}">Info</a></li>
+    <br>
+    <li><a th:href="@{/person}">Persons</a></li>
+    <br>
+    <li><a th:href="@{/subscription}">Subscriptions</a></li>
+    <br>
+    <li><a th:href="@{/admin}">Admin (for admins only)</a></li>
+    <br>
+    <li><a th:href="@{/blocked}">Blocked users (for admins only)</a></li>
+</ul>
+
+</body>
+
+</html>
