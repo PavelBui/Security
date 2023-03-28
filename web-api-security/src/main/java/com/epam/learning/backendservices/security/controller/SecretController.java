@@ -1,10 +1,7 @@
 package com.epam.learning.backendservices.security.controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/secret")
 public interface SecretController {
@@ -14,5 +11,8 @@ public interface SecretController {
 
     @PostMapping
     String setSecret(Model model, @RequestParam String secret);
+
+    @GetMapping("/{uuid}")
+    String showSecret(Model model, @PathVariable String uuid);
 
 }
