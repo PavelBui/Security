@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -17,17 +19,15 @@ public class SecretControllerImpl implements SecretController {
     @Value("${api.base.uri}")
     private URL apiBaseUrl;
 
-    private String secretValue;
-
-    private UUID uuid;
+    private Map<UUID, String> secretMap = new HashMap<>();
 
     public String getSecretPage() {
         return "secret";
     }
 
     public String setSecret(Model model, @RequestParam String secret) {
-        uuid = UUID.randomUUID();
-        secretValue = secret;
+        UUID uuid = UUID.randomUUID();
+        secretMap.put(uuid, secret);
         URL secretUrl = null;
         try {
             secretUrl = new URL(apiBaseUrl, "/secret/" + uuid);
@@ -40,10 +40,11 @@ public class SecretControllerImpl implements SecretController {
     }
 
     public String showSecret(Model model, @PathVariable String uuid) {
-        if (this.uuid != null && uuid.equals(this.uuid.toString())) {
+        UUID inputUuid = UUID.fromString(uuid);
+        String secretValue = secretMap.get(inputUuid);
+        if (secretValue != null) {
             model.addAttribute("secret", secretValue);
-            this.uuid = null;
-            secretValue = "";
+            secretMap.remove(inputUuid);
             return "secretvalue";
         }
         return "index";
