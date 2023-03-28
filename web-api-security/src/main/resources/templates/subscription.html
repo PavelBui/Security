@@ -11,9 +11,9 @@
     <p th:text="${subscription.getPersonId()} + ', ' + ${subscription.getStartDate()}"/>
 </div>
 <br><br>
-<a href="http://localhost:8080/index">Home</a>
+<a th:href="@{/index}">Home</a>
 <br><br>
-<a href="http://localhost:8080/logout">Logout</a>
+<a th:href="@{/logout}">Logout</a>
 
 </body>
 </html>

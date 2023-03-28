@@ -10,20 +10,20 @@
 <h3>Some info about application</h3>
 
 <ul style="list-style: none;">
-    <li><a href="http://localhost:8080/index">Home</a></li>
+    <li><a th:href="@{/index}">Home</a></li>
     <br>
-    <li><a href="http://localhost:8080/about">About</a></li>
+    <li><a th:href="@{/about}">About</a></li>
     <br>
-    <li><a href="http://localhost:8080/person">Persons</a></li>
+    <li><a th:href="@{/person}">Persons</a></li>
     <br>
-    <li><a href="http://localhost:8080/subscription">Subscriptions</a></li>
+    <li><a th:href="@{/subscription}">Subscriptions</a></li>
     <br>
-    <li><a href="http://localhost:8080/admin">Admin (for admins only)</a></li>
+    <li><a th:href="@{/admin}">Admin (for admins only)</a></li>
     <br>
-    <li><a href="http://localhost:8080/blocked">Blocked users (for admins only)</a></li>
+    <li><a th:href="@{/blocked}">Blocked users (for admins only)</a></li>
 </ul>
 <br>
-<a href="http://localhost:8080/logout">Logout</a>
+<a th:href="@{/logout}">Logout</a>
 
 </body>
 
